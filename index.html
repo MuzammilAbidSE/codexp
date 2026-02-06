@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code XP Solutions - Premium Software Development & Digital Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC2626;
+            --dark-red: #991B1B;
+            --black: #0F172A;
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --gray: #64748B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--black);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--black);
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            padding: 0.5rem 0;
+            top: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--white);
+        }
+
+        .dropdown-content a:hover {
+            background: var(--primary-red);
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #E2E8F0;
+            animation: fadeInUp 0.8s 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Services Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--black);
+        }
+
+        .section-title span {
+            color: var(--primary-red);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary-red);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.2);
+        }
+
+        .service-card h3 {
+            color: var(--black);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Service Detail Page */
+        .service-detail {
+            background: var(--light-gray);
+        }
+
+        .service-hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--primary-red) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .service-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .feature-list {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-list h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: var(--primary-red);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .about-text h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stat-box h4 {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .submit-btn {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-red);
+        }
+
+        .contact-info {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .info-item:before {
+            content: "▸";
+            color: var(--primary-red);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: var(--gray);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light-gray);
+            padding: 4rem 2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-red);
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: #FCD34D;
+            margin-bottom: 1rem;
+        }
+
+        /* Company Introduction */
+        .intro-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+        }
+
+        .intro-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+
+        .intro-text h2 span {
+            color: var(--primary-red);
+        }
+
+        .intro-text p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-red);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Why Choose Us */
+        .why-us-section {
+            background: linear-gradient(135deg, var(--black) 0%, #1E293B 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+        }
+
+        .why-us-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-us-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            transition: all 0.3s;
+        }
+
+        .why-us-card:hover {
+            background: rgba(220, 38, 38, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .why-us-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .why-us-card h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .why-us-card p {
+            color: #CBD5E1;
+            line-height: 1.6;
+        }
+
+        /* Trust Indicators */
+        .trust-section {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .trust-badges {
+            max-width: 1000px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .trust-badge h4 {
+            color: var(--black);
+            font-size: 1.1rem;
+        }
+
+        .trust-badge p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .process-steps {
+            max-width: 1200px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-red);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #FEE2E2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: var(--white);
+            color: var(--primary-red);
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cta-primary:hover {
+            background: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: var(--white);
+            color: var(--primary-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-container,
+            .intro-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Code<span>XP</span> Solutions</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Services ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="showPage('software-dev')">Software Development</a>
+                        <a href="#" onclick="showPage('web-design')">Website Designing</a>
+                        <a href="#" onclick="showPage('ai-automation')">AI Automation</a>
+                        <a href="#" onclick="showPage('seo')">SEO Services</a>
+                        <a href="#" onclick="showPage('mobile-apps')">Mobile Applications</a>
+                        <a href="#" onclick="showPage('digital-marketing')">Digital Marketing</a>
+                    </div>
+                </li>
+                <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Transform Your Digital Vision Into Reality</h1>
+            <p>Premium Software Development, AI Solutions & Digital Marketing Services</p>
+            <a href="#" onclick="showPage('contact')" class="cta-button">Get Started Today</a>
+        </section>
+
+        <!-- Company Introduction -->
+        <section class="intro-section">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Welcome to <span>Code XP Solutions</span></h2>
+                    <p>
+                        We are a premier digital solutions provider specializing in cutting-edge software development, innovative AI automation, and result-driven digital marketing strategies. With a passion for technology and a commitment to excellence, we help businesses of all sizes navigate the digital landscape and achieve unprecedented growth.
+                    </p>
+                    <p>
+                        Since our inception, we've partnered with hundreds of companies worldwide, delivering solutions that not only meet expectations but exceed them. Our team of expert developers, designers, and digital strategists work collaboratively to turn your vision into reality.
+                    </p>
+                    <a href="#" onclick="showPage('about')" class="cta-button" style="display: inline-block; margin-top: 1rem;">Learn More About Us</a>
+                </div>
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">
+                            <h4>Mission-Driven</h4>
+                            <p>Empowering businesses through innovative technology solutions</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-text">
+                            <h4>Fast Delivery</h4>
+                            <p>Agile methodology ensures rapid, quality results</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feature-icon">💎</div>
+                        <div class="feature-text">
+                            <h4>Premium Quality</h4>
+                            <p>Excellence in every line of code and pixel</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feature-icon">🤝</div>
+                        <div class="feature-text">
+                            <h4>Partnership Approach</h4>
+                            <p>Your success is our success</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-text">
+                            <h4>Secure & Reliable</h4>
+                            <p>Enterprise-grade security in all solutions</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-text">
+                            <h4>Proven Results</h4>
+                            <p>Track record of delivering measurable ROI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card" onclick="showPage('software-dev')">
+                    <h3>Software Development</h3>
+                    <p>Custom software solutions tailored to your business needs. We build scalable, robust applications using cutting-edge technologies.</p>
+                </div>
+                <div class="service-card" onclick="showPage('web-design')">
+                    <h3>Website Designing</h3>
+                    <p>Stunning, responsive websites that captivate your audience and drive conversions. Beautiful design meets powerful functionality.</p>
+                </div>
+                <div class="service-card" onclick="showPage('ai-automation')">
+                    <h3>AI Automation</h3>
+                    <p>Leverage artificial intelligence to automate processes, increase efficiency, and gain competitive advantages in your industry.</p>
+                </div>
+                <div class="service-card" onclick="showPage('seo')">
+                    <h3>SEO Services</h3>
+                    <p>Dominate search rankings with our proven SEO strategies. We help your business get found by customers actively searching for your services.</p>
+                </div>
+                <div class="service-card" onclick="showPage('mobile-apps')">
+                    <h3>Mobile Applications</h3>
+                    <p>Native and cross-platform mobile apps that deliver exceptional user experiences on iOS and Android devices.</p>
+                </div>
+                <div class="service-card" onclick="showPage('digital-marketing')">
+                    <h3>Digital Marketing</h3>
+                    <p>Comprehensive digital marketing strategies that amplify your brand, engage your audience, and drive measurable results.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Work With Us -->
+        <section class="why-us-section">
+            <div class="why-us-content">
+                <h2 class="section-title" style="color: var(--white);">Why <span>Choose Us</span></h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #CBD5E1; font-size: 1.1rem;">
+                    We don't just deliver projects—we build lasting partnerships. Here's what sets Code XP Solutions apart from the competition.
+                </p>
+                <div class="why-us-grid">
+                    <div class="why-us-card">
+                        <div class="why-us-icon">🏆</div>
+                        <h3>Award-Winning Expertise</h3>
+                        <p>Our team consists of certified professionals with industry-recognized credentials and years of hands-on experience across diverse sectors.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">🚀</div>
+                        <h3>Innovation First</h3>
+                        <p>We stay at the forefront of technology trends, implementing the latest tools and methodologies to give you a competitive edge.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">💰</div>
+                        <h3>Transparent Pricing</h3>
+                        <p>No hidden costs, no surprises. We provide detailed quotes and stick to our commitments, ensuring you get maximum value for your investment.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">⏱️</div>
+                        <h3>On-Time Delivery</h3>
+                        <p>We understand deadlines matter. Our agile approach ensures timely delivery without compromising on quality.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">🎨</div>
+                        <h3>Custom Solutions</h3>
+                        <p>No cookie-cutter approaches. Every solution is tailored specifically to your unique business needs and goals.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">📞</div>
+                        <h3>24/7 Support</h3>
+                        <p>Our commitment doesn't end at launch. We provide ongoing support and maintenance to ensure your continued success.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">🔐</div>
+                        <h3>Data Security</h3>
+                        <p>Your data is safe with us. We implement industry-leading security protocols and maintain strict confidentiality agreements.</p>
+                    </div>
+                    <div class="why-us-card">
+                        <div class="why-us-icon">📊</div>
+                        <h3>Measurable Results</h3>
+                        <p>We focus on metrics that matter. Every project includes clear KPIs and regular reporting to track your ROI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process -->
+        <section class="process-section">
+            <div class="container">
+                <h2 class="section-title">Our Proven <span>Process</span></h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--gray); font-size: 1.1rem;">
+                    We follow a systematic, collaborative approach that ensures transparency, quality, and success at every stage of your project.
+                </p>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Discovery & Consultation</h3>
+                        <p>We start by understanding your business, goals, challenges, and vision through in-depth consultations and research.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Strategy & Planning</h3>
+                        <p>Our experts develop a comprehensive strategy and project roadmap tailored to achieve your specific objectives.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Design & Development</h3>
+                        <p>We bring your vision to life with cutting-edge design and development, keeping you involved throughout the process.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Testing & Quality Assurance</h3>
+                        <p>Rigorous testing ensures every solution is bug-free, secure, and performs flawlessly across all platforms.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3>Launch & Deployment</h3>
+                        <p>We handle smooth deployment and provide comprehensive training to ensure your team is ready to succeed.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <h3>Support & Optimization</h3>
+                        <p>Post-launch, we monitor performance, provide ongoing support, and continuously optimize for better results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Indicators -->
+        <section class="trust-section">
+            <h2 class="section-title">Trusted By <span>Industry Leaders</span></h2>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="badge-icon">✓</div>
+                    <h4>ISO Certified</h4>
+                    <p>Quality Management Systems</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="badge-icon">🔒</div>
+                    <h4>GDPR Compliant</h4>
+                    <p>Data Protection Standards</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="badge-icon">⭐</div>
+                    <h4>Top Rated</h4>
+                    <p>4.9/5 Client Satisfaction</p>
+                </div>
+                <div class="trust-badge">
+                    <div class="badge-icon">🏅</div>
+                    <h4>Award Winner</h4>
+                    <p>Best Digital Agency 2024</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our <span>Clients Say</span></h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--gray); font-size: 1.1rem;">
+                    Don't just take our word for it. Here's what our clients have to say about working with Code XP Solutions.
+                </p>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "Code XP Solutions transformed our entire digital presence. Their team's expertise in AI automation helped us reduce operational costs by 40% while improving customer satisfaction. Absolutely phenomenal work!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JS</div>
+                            <div class="author-info">
+                                <h4>Jennifer Smith</h4>
+                                <p>CEO, TechVision Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "Working with Code XP was a game-changer for our e-commerce business. Their SEO and digital marketing strategies tripled our organic traffic in just 6 months. The ROI has been incredible!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>Founder, Urban Style Fashion</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "The mobile app they developed for us exceeded all expectations. The user interface is stunning, performance is flawless, and our customers love it. Their attention to detail is unmatched."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SK</div>
+                            <div class="author-info">
+                                <h4>Sarah Kim</h4>
+                                <p>Product Manager, HealthFirst</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "Professional, responsive, and incredibly talented. Code XP delivered our custom software solution on time and within budget. Their ongoing support has been invaluable to our success."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">DM</div>
+                            <div class="author-info">
+                                <h4>David Martinez</h4>
+                                <p>CTO, FinanceHub Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "Their website design work is outstanding! They captured our brand perfectly and created an intuitive user experience that has significantly increased our conversion rates. Highly recommend!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">EP</div>
+                            <div class="author-info">
+                                <h4>Emily Patterson</h4>
+                                <p>Marketing Director, Green Earth Co.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            "From initial consultation to final delivery, the Code XP team was exceptional. Their AI automation solution has revolutionized how we handle customer inquiries. Best investment we've made!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RC</div>
+                            <div class="author-info">
+                                <h4>Robert Chen</h4>
+                                <p>Operations Manager, GlobalTrade LLC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Let's discuss how we can help you achieve your digital goals and drive real results.</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="showPage('contact')" class="cta-primary">Start Your Project</a>
+                <a href="#" onclick="showPage('about')" class="cta-secondary">Learn More</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Software Development Page -->
+    <div id="software-dev" class="page service-detail">
+        <div class="service-hero">
+            <h1>Software Development</h1>
+            <p>Building Tomorrow's Solutions Today</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                At Code XP Solutions, we specialize in creating custom software that transforms how businesses operate. Our expert development team combines technical excellence with deep industry knowledge to deliver solutions that drive real business value.
+            </p>
+            
+            <div class="feature-list">
+                <h3>Our Software Development Services Include:</h3>
+                <ul>
+                    <li>Custom Enterprise Software Development</li>
+                    <li>Cloud-Based Application Development</li>
+                    <li>API Development and Integration</li>
+                    <li>Database Design and Management</li>
+                    <li>Legacy System Modernization</li>
+                    <li>Software Architecture Consulting</li>
+                    <li>Quality Assurance and Testing</li>
+                    <li>Ongoing Maintenance and Support</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>Technologies We Master:</h3>
+                <ul>
+                    <li>Python, Java, C#, JavaScript, TypeScript</li>
+                    <li>React, Angular, Vue.js for frontend</li>
+                    <li>Node.js, .NET, Django for backend</li>
+                    <li>MySQL, PostgreSQL, MongoDB databases</li>
+                    <li>AWS, Azure, Google Cloud platforms</li>
+                    <li>Docker, Kubernetes for containerization</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                We follow agile development methodologies to ensure transparency, flexibility, and rapid delivery. Every project includes comprehensive documentation, thorough testing, and post-launch support to guarantee your success.
+            </p>
+        </div>
+    </div>
+
+    <!-- Website Designing Page -->
+    <div id="web-design" class="page service-detail">
+        <div class="service-hero">
+            <h1>Website Designing</h1>
+            <p>Where Creativity Meets Functionality</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                Your website is your digital storefront. We create visually stunning, user-friendly websites that not only look amazing but also drive conversions and support your business goals. Every design is crafted with your brand identity and target audience in mind.
+            </p>
+            
+            <div class="feature-list">
+                <h3>Our Web Design Services:</h3>
+                <ul>
+                    <li>Responsive Website Design (Mobile-First Approach)</li>
+                    <li>E-commerce Website Development</li>
+                    <li>Landing Page Design and Optimization</li>
+                    <li>UI/UX Design and Prototyping</li>
+                    <li>Brand Identity and Logo Design</li>
+                    <li>Website Redesign and Modernization</li>
+                    <li>Content Management Systems (WordPress, Custom CMS)</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>What Sets Us Apart:</h3>
+                <ul>
+                    <li>Mobile-responsive designs that work flawlessly on all devices</li>
+                    <li>SEO-optimized structure from the ground up</li>
+                    <li>Lightning-fast loading speeds</li>
+                    <li>Accessibility standards compliance (WCAG)</li>
+                    <li>Conversion-focused design strategies</li>
+                    <li>Ongoing support and maintenance options</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                We believe great web design is a perfect blend of aesthetics, functionality, and performance. Let us create a website that not only represents your brand beautifully but also delivers measurable business results.
+            </p>
+        </div>
+    </div>
+
+    <!-- AI Automation Page -->
+    <div id="ai-automation" class="page service-detail">
+        <div class="service-hero">
+            <h1>AI Automation</h1>
+            <p>Intelligent Solutions for Modern Businesses</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                Harness the power of artificial intelligence to revolutionize your business operations. Our AI automation solutions help you work smarter, reduce costs, eliminate repetitive tasks, and unlock new opportunities for growth and innovation.
+            </p>
+            
+            <div class="feature-list">
+                <h3>AI Automation Services We Offer:</h3>
+                <ul>
+                    <li>Intelligent Process Automation (IPA)</li>
+                    <li>AI Chatbots and Virtual Assistants</li>
+                    <li>Machine Learning Model Development</li>
+                    <li>Natural Language Processing Solutions</li>
+                    <li>Computer Vision Applications</li>
+                    <li>Predictive Analytics and Forecasting</li>
+                    <li>Document Processing and Data Extraction</li>
+                    <li>Workflow Automation Integration</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>Industries We Serve:</h3>
+                <ul>
+                    <li>Healthcare - Patient data management, diagnosis assistance</li>
+                    <li>Finance - Fraud detection, risk assessment</li>
+                    <li>E-commerce - Product recommendations, inventory management</li>
+                    <li>Manufacturing - Quality control, predictive maintenance</li>
+                    <li>Customer Service - 24/7 automated support, sentiment analysis</li>
+                    <li>Marketing - Lead scoring, content personalization</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                Our AI solutions are designed to integrate seamlessly with your existing systems while delivering immediate value. We provide comprehensive training and support to ensure your team can leverage these powerful tools effectively.
+            </p>
+        </div>
+    </div>
+
+    <!-- SEO Services Page -->
+    <div id="seo" class="page service-detail">
+        <div class="service-hero">
+            <h1>SEO Services</h1>
+            <p>Dominate Search Rankings, Drive Organic Growth</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                In today's digital landscape, being found online is everything. Our comprehensive SEO services help your business rank higher in search results, attract qualified traffic, and convert visitors into customers. We use proven, white-hat strategies that deliver sustainable results.
+            </p>
+            
+            <div class="feature-list">
+                <h3>Complete SEO Solutions:</h3>
+                <ul>
+                    <li>Comprehensive SEO Audits and Analysis</li>
+                    <li>Keyword Research and Strategy</li>
+                    <li>On-Page SEO Optimization</li>
+                    <li>Technical SEO (Site Speed, Mobile, Structure)</li>
+                    <li>Content Strategy and Optimization</li>
+                    <li>Link Building and Outreach</li>
+                    <li>Local SEO for Geographic Targeting</li>
+                    <li>E-commerce SEO</li>
+                    <li>SEO Reporting and Analytics</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>Our SEO Process:</h3>
+                <ul>
+                    <li>Discovery - Understanding your business, competitors, and goals</li>
+                    <li>Research - In-depth keyword and market analysis</li>
+                    <li>Strategy - Creating a customized SEO roadmap</li>
+                    <li>Implementation - Executing on-page and off-page optimizations</li>
+                    <li>Monitoring - Tracking rankings, traffic, and conversions</li>
+                    <li>Refinement - Continuously improving based on data insights</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                We don't believe in quick fixes or black-hat tactics. Our approach focuses on building long-term organic visibility through ethical practices that align with Google's guidelines and deliver lasting results for your business.
+            </p>
+        </div>
+    </div>
+
+    <!-- Mobile Applications Page -->
+    <div id="mobile-apps" class="page service-detail">
+        <div class="service-hero">
+            <h1>Mobile Applications</h1>
+            <p>Engaging Mobile Experiences That Users Love</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                With billions of smartphone users worldwide, mobile apps are essential for modern businesses. We create intuitive, high-performance mobile applications that engage users, streamline operations, and open new revenue channels for your business.
+            </p>
+            
+            <div class="feature-list">
+                <h3>Mobile App Development Services:</h3>
+                <ul>
+                    <li>Native iOS App Development (Swift, SwiftUI)</li>
+                    <li>Native Android App Development (Kotlin, Java)</li>
+                    <li>Cross-Platform Development (React Native, Flutter)</li>
+                    <li>Progressive Web Apps (PWAs)</li>
+                    <li>App UI/UX Design</li>
+                    <li>Backend and API Development</li>
+                    <li>App Store Optimization (ASO)</li>
+                    <li>App Maintenance and Updates</li>
+                    <li>Quality Assurance and Testing</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>Types of Apps We Build:</h3>
+                <ul>
+                    <li>E-commerce and Shopping Apps</li>
+                    <li>Social Networking and Community Apps</li>
+                    <li>On-Demand Service Apps</li>
+                    <li>Health and Fitness Applications</li>
+                    <li>Enterprise and Business Apps</li>
+                    <li>Educational and E-Learning Apps</li>
+                    <li>Gaming and Entertainment Apps</li>
+                    <li>Financial and Banking Apps</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                From concept to launch and beyond, we handle every aspect of mobile app development. Our apps are built for performance, security, and scalability, ensuring they can grow alongside your business while delivering exceptional user experiences.
+            </p>
+        </div>
+    </div>
+
+    <!-- Digital Marketing Page -->
+    <div id="digital-marketing" class="page service-detail">
+        <div class="service-hero">
+            <h1>Digital Marketing</h1>
+            <p>Strategic Marketing That Delivers Results</p>
+        </div>
+        <div class="service-content">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                In the digital age, effective marketing requires a multi-channel approach. We create comprehensive digital marketing strategies that build brand awareness, engage your target audience, and drive measurable business growth across all digital platforms.
+            </p>
+            
+            <div class="feature-list">
+                <h3>Our Digital Marketing Services:</h3>
+                <ul>
+                    <li>Social Media Marketing (Facebook, Instagram, LinkedIn, Twitter)</li>
+                    <li>Pay-Per-Click Advertising (Google Ads, Social Ads)</li>
+                    <li>Content Marketing and Strategy</li>
+                    <li>Email Marketing Campaigns</li>
+                    <li>Influencer Marketing</li>
+                    <li>Video Marketing and YouTube Strategy</li>
+                    <li>Online Reputation Management</li>
+                    <li>Conversion Rate Optimization</li>
+                    <li>Marketing Analytics and Reporting</li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <h3>What Makes Our Approach Different:</h3>
+                <ul>
+                    <li>Data-driven strategies backed by analytics</li>
+                    <li>Custom campaigns tailored to your audience</li>
+                    <li>Multi-channel integration for maximum impact</li>
+                    <li>Continuous A/B testing and optimization</li>
+                    <li>Transparent reporting with clear ROI metrics</li>
+                    <li>Creative content that resonates with your market</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                Whether you're looking to increase brand awareness, generate leads, or drive sales, our digital marketing experts will create and execute a strategy that achieves your specific business objectives with measurable, sustainable results.
+            </p>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page">
+        <div class="hero" style="padding: 4rem 2rem;">
+            <h1>About Code XP Solutions</h1>
+            <p>Your Partner in Digital Transformation</p>
+        </div>
+        
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Code XP Solutions is a leading digital services company dedicated to helping businesses thrive in the digital age. We combine technical expertise, creative innovation, and strategic thinking to deliver solutions that drive real business results.
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        Founded by a team of passionate technologists and marketing experts, we've grown into a trusted partner for businesses seeking to leverage technology and digital marketing to achieve their goals. Our commitment to excellence and client success sets us apart.
+                    </p>
+                </div>
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        To empower businesses with cutting-edge technology solutions and digital strategies that unlock their full potential and drive sustainable growth in an ever-evolving digital landscape.
+                    </p>
+                    <h3>Our Vision</h3>
+                    <p>
+                        To be the most trusted and innovative digital solutions partner, recognized for our expertise, integrity, and unwavering commitment to client success across all industries we serve.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <h4>500+</h4>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-box">
+                    <h4>98%</h4>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-box">
+                    <h4>50+</h4>
+                    <p>Expert Team Members</p>
+                </div>
+            </div>
+
+            <div class="feature-list" style="margin-top: 3rem;">
+                <h3>Why Choose Code XP Solutions?</h3>
+                <ul>
+                    <li><strong>Expert Team:</strong> Certified professionals with years of industry experience</li>
+                    <li><strong>Proven Track Record:</strong> Hundreds of successful projects across diverse industries</li>
+                    <li><strong>Client-Centric Approach:</strong> Your success is our top priority</li>
+                    <li><strong>Cutting-Edge Technology:</strong> We stay ahead of industry trends and innovations</li>
+                    <li><strong>Transparent Communication:</strong> Regular updates and clear project visibility</li>
+                    <li><strong>Competitive Pricing:</strong> Premium quality at fair, transparent pricing</li>
+                    <li><strong>Ongoing Support:</strong> We're here for you long after project completion</li>
+                    <li><strong>Results-Driven:</strong> Every solution is designed to deliver measurable ROI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page">
+        <div class="hero" style="padding: 4rem 2rem;">
+            <h1>Get In Touch</h1>
+            <p>Let's Discuss Your Next Project</p>
+        </div>
+        
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2 style="margin-bottom: 1.5rem;">Send Us a Message</h2>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service">
+                                <option value="">Select a service</option>
+                                <option value="software">Software Development</option>
+                                <option value="web">Website Designing</option>
+                                <option value="ai">AI Automation</option>
+                                <option value="seo">SEO Services</option>
+                                <option value="mobile">Mobile Applications</option>
+                                <option value="marketing">Digital Marketing</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <strong>Email:</strong><br>
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f767179705f7c707b7a676f6c70736a6b7670716c317c7072">[email&#160;protected]</a><br>
+                        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b0804051f0a081f2b08040f0e131b1804071e1f0204051845080406">[email&#160;protected]</a>
+                    </div>
+                    <div class="info-item">
+                        <strong>Phone:</strong><br>
+                        +1 (555) 123-4567<br>
+                        +1 (555) 987-6543
+                    </div>
+                    <div class="info-item">
+                        <strong>Address:</strong><br>
+                        123 Tech Boulevard<br>
+                        Innovation District<br>
+                        San Francisco, CA 94102
+                    </div>
+                    <div class="info-item">
+                        <strong>Business Hours:</strong><br>
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h3>Follow Us</h3>
+                        <p style="margin-top: 1rem;">
+                            Stay connected on social media for updates, tips, and industry insights.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Code XP Solutions</h4>
+                <p>Transforming businesses through innovative technology and strategic digital marketing solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('about')">About Us</a>
+                <a href="#" onclick="showPage('contact')">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#" onclick="showPage('software-dev')">Software Development</a>
+                <a href="#" onclick="showPage('web-design')">Website Designing</a>
+                <a href="#" onclick="showPage('ai-automation')">AI Automation</a>
+                <a href="#" onclick="showPage('mobile-apps')">Mobile Applications</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2841464e47684b474c4d50585b47445d5c4147465b064b4745">[email&#160;protected]</a></p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <p>Address: 123 Tech Boulevard<br>San Francisco, CA 94102</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Code XP Solutions. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
